@@ -9,7 +9,7 @@ import com.example.auth.controllers.entities.register.PostRegisterBody;
 @Mapper
 public class AuthMapper {
 
-  public RegisterParams toRegisterParams(PostRegisterBody body) {
+  public RegisterParams registerBodyToDomain(PostRegisterBody body) {
     return new RegisterParams(
         body.getName(),
         body.getLastName(),
@@ -17,7 +17,7 @@ public class AuthMapper {
         body.getPassword());
   }
 
-  public LoginParams toLoginParams(PostLoginBody body) {
+  public LoginParams loginBodyToDomain(PostLoginBody body) {
     return new LoginParams(
         body.getEmail(),
         body.getPassword());

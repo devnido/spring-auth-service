@@ -1,32 +1,14 @@
 package com.example.auth.controllers.entities.login;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class PostLoginBody {
 
-  String email;
+  private String email;
 
-  String password;
+  private String password;
 
-  public PostLoginBody() {
-  }
-
-  public PostLoginBody(String email, String password) {
-    this.email = email;
-    this.password = password;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
 }

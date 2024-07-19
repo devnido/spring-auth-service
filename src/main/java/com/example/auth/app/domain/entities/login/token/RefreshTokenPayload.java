@@ -5,9 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AccessTokenPayload {
+public class RefreshTokenPayload {
 
   private String id;
-  private String email;
 
 }

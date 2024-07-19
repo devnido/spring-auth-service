@@ -34,11 +34,10 @@ public class AuthController {
   @Autowired
   AuthMapper mapper;
 
-  // TODO: Implement try catch block
   @PostMapping("/login")
   public ResponseEntity<?> login(@RequestBody PostLoginBody body) {
 
-    LoginParams params = mapper.toLoginParams(body);
+    LoginParams params = mapper.loginBodyToDomain(body);
 
     LoginResult result = loginUseCase.execute(params);
 
@@ -50,11 +49,10 @@ public class AuthController {
 
   }
 
-  // TODO: Implement try catch block
   @PostMapping("/register")
   public ResponseEntity<?> register(@RequestBody PostRegisterBody body) {
 
-    RegisterParams params = mapper.toRegisterParams(body);
+    RegisterParams params = mapper.registerBodyToDomain(body);
 
     RegisterResult result = registerUseCase.execute(params);
 

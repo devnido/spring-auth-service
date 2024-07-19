@@ -5,13 +5,13 @@ import com.example.auth.app.domain.entities.User;
 import com.example.auth.app.infrastructure.repository.database.UserCollection;
 import com.example.auth.app.infrastructure.repository.database.entities.UserSchema;
 import com.example.auth.app.infrastructure.repository.database.mapper.UserMongoDBMapper;
-import com.example.auth.base.annotations.DataSource;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-@DataSource
+@Repository
 public class AuthDataSourceImpl implements AuthDataSource {
 
   @Autowired
