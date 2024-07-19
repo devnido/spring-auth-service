@@ -9,16 +9,19 @@ import com.example.auth.app.domain.entities.login.LoginParams;
 import com.example.auth.app.domain.entities.login.LoginResult;
 import com.example.auth.app.domain.entities.register.RegisterParams;
 import com.example.auth.app.domain.entities.register.RegisterResult;
+import com.example.auth.controllers.entities.error.ResponseFieldErrorBody;
 import com.example.auth.controllers.entities.login.PostLoginBody;
 import com.example.auth.controllers.entities.register.PostRegisterBody;
 import com.example.auth.controllers.mappers.AuthMapper;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -34,7 +37,11 @@ public class AuthController {
   private final AuthMapper mapper;
 
   @PostMapping("/login")
-  public ResponseEntity<?> login(@RequestBody PostLoginBody body) {
+  public ResponseEntity<?> login(@Valid @RequestBody PostLoginBody body, BindingResult bindingResult) {
+
+    if (bindingResult.hasFieldErrors()) {
+      return handleErrors(bindingResult);
+    }
 
     LoginParams params = mapper.loginBodyToDomain(body);
 
@@ -49,7 +56,11 @@ public class AuthController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity<?> register(@RequestBody PostRegisterBody body) {
+  public ResponseEntity<?> register(@Valid @RequestBody PostRegisterBody body, BindingResult bindingResult) {
+
+    if (bindingResult.hasFieldErrors()) {
+      return handleErrors(bindingResult);
+    }
 
     RegisterParams params = mapper.registerBodyToDomain(body);
 
@@ -57,6 +68,13 @@ public class AuthController {
 
     return ResponseEntity.status(HttpStatus.OK).body(result);
 
+  }
+
+  private ResponseEntity<?> handleErrors(BindingResult bindingResult) {
+
+    ResponseFieldErrorBody body = mapper.fieldErrorsToFieldErrorResponse(bindingResult.getFieldErrors());
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
   }
 
 }
