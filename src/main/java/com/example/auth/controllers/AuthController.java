@@ -13,9 +13,10 @@ import com.example.auth.controllers.entities.login.PostLoginBody;
 import com.example.auth.controllers.entities.register.PostRegisterBody;
 import com.example.auth.controllers.mappers.AuthMapper;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,16 +24,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
-  @Autowired
-  LoginUseCase loginUseCase;
+  private final LoginUseCase loginUseCase;
 
-  @Autowired
-  RegisterUseCase registerUseCase;
+  private final RegisterUseCase registerUseCase;
 
-  @Autowired
-  AuthMapper mapper;
+  private final AuthMapper mapper;
 
   @PostMapping("/login")
   public ResponseEntity<?> login(@RequestBody PostLoginBody body) {

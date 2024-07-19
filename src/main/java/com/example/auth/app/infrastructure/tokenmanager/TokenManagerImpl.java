@@ -19,11 +19,12 @@ public class TokenManagerImpl implements TokenManager {
 
   private static final long REFRESH_TOKEN_EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 7; // 7 days
 
-  public static final SecretKey SECRET_KEY = Jwts.SIG.HS256.key().build();
+  // this key will be regenerated every time the application is restarted
+  private static final SecretKey SECRET_KEY = Jwts.SIG.HS256.key().build();
 
-  public static final String KEY_ID = "id";
+  private static final String KEY_ID = "id";
 
-  public static final String KEY_EMAIL = "email";
+  private static final String KEY_EMAIL = "email";
 
   @Override
   public String generateAccessToken(AccessTokenPayload payload) {

@@ -1,6 +1,5 @@
 package com.example.auth.app.application.register;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.auth.app.domain.contracts.AuthDataSource;
@@ -10,14 +9,15 @@ import com.example.auth.app.domain.entities.register.RegisterParams;
 import com.example.auth.base.BaseUseCase;
 import com.example.auth.base.annotations.UseCase;
 
+import lombok.RequiredArgsConstructor;
+
 @UseCase
+@RequiredArgsConstructor
 public class RegisterUseCase extends BaseUseCase<RegisterParams, RegisterResult> {
 
-  @Autowired
-  private PasswordEncoder passwordEncoder;
+  private final PasswordEncoder passwordEncoder;
 
-  @Autowired
-  private AuthDataSource authDataSource;
+  private final AuthDataSource authDataSource;
 
   @Override
   public RegisterResult execute(RegisterParams params) {
