@@ -1,4 +1,4 @@
-package com.example.auth.controllers.entities.error;
+package com.example.auth.controllers.auth.entities.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

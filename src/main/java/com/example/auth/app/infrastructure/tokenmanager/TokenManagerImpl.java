@@ -2,12 +2,16 @@ package com.example.auth.app.infrastructure.tokenmanager;
 
 import java.util.Date;
 
-import javax.crypto.SecretKey;
 import org.springframework.stereotype.Component;
 
 import com.example.auth.app.domain.contracts.TokenManager;
 import com.example.auth.app.domain.entities.login.token.AccessTokenPayload;
 import com.example.auth.app.domain.entities.login.token.RefreshTokenPayload;
+import static com.example.auth.base.config.security.constants.JwtConstants.ACCESS_TOKEN_EXPIRATION_TIME;
+import static com.example.auth.base.config.security.constants.JwtConstants.SECRET_KEY;
+import static com.example.auth.base.config.security.constants.JwtConstants.REFRESH_TOKEN_EXPIRATION_TIME;
+import static com.example.auth.base.config.security.constants.JwtConstants.KEY_ID_PAYLOAD;
+import static com.example.auth.base.config.security.constants.JwtConstants.KEY_EMAIL_PAYLOAD;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -15,23 +19,12 @@ import io.jsonwebtoken.Jwts;
 @Component
 public class TokenManagerImpl implements TokenManager {
 
-  private static final long ACCESS_TOKEN_EXPIRATION_TIME = 1000 * 60 * 2; // 2 minutes
-
-  private static final long REFRESH_TOKEN_EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 7; // 7 days
-
-  // this key will be regenerated every time the application is restarted
-  private static final SecretKey SECRET_KEY = Jwts.SIG.HS256.key().build();
-
-  private static final String KEY_ID = "id";
-
-  private static final String KEY_EMAIL = "email";
-
   @Override
   public String generateAccessToken(AccessTokenPayload payload) {
 
     Claims claims = Jwts.claims()
-        .add(KEY_ID, payload.getId())
-        .add(KEY_EMAIL, payload.getEmail())
+        .add(KEY_ID_PAYLOAD, payload.getId())
+        .add(KEY_EMAIL_PAYLOAD, payload.getEmail())
         .build();
 
     String accessToken = Jwts.builder()
@@ -56,6 +49,25 @@ public class TokenManagerImpl implements TokenManager {
         .compact();
 
     return refreshToken;
+  }
+
+  @Override
+  public boolean validateAccessToken(String token) {
+
+    try {
+
+      Claims claims = Jwts.parser()
+          .verifyWith(SECRET_KEY)
+          .build()
+          .parseSignedClaims(token)
+          .getPayload();
+
+      return true;
+
+    } catch (Exception e) {
+      return false;
+    }
+
   }
 
 }

@@ -9,4 +9,6 @@ public interface TokenManager {
 
   public String generateRefreshToken(RefreshTokenPayload payload);
 
+  public boolean validateAccessToken(String token);
+
 }

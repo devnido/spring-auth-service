@@ -1,4 +1,4 @@
-package com.example.auth.controllers;
+package com.example.auth.controllers.auth;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,10 +9,10 @@ import com.example.auth.app.domain.entities.login.LoginParams;
 import com.example.auth.app.domain.entities.login.LoginResult;
 import com.example.auth.app.domain.entities.register.RegisterParams;
 import com.example.auth.app.domain.entities.register.RegisterResult;
-import com.example.auth.controllers.entities.error.ResponseFieldErrorBody;
-import com.example.auth.controllers.entities.login.PostLoginBody;
-import com.example.auth.controllers.entities.register.PostRegisterBody;
-import com.example.auth.controllers.mappers.AuthMapper;
+import com.example.auth.controllers.auth.entities.error.ResponseFieldErrorBody;
+import com.example.auth.controllers.auth.entities.login.PostLoginBody;
+import com.example.auth.controllers.auth.entities.register.PostRegisterBody;
+import com.example.auth.controllers.auth.mappers.AuthMapper;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

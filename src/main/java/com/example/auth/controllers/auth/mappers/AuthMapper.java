@@ -1,12 +1,12 @@
-package com.example.auth.controllers.mappers;
+package com.example.auth.controllers.auth.mappers;
 
 import com.example.auth.app.domain.entities.login.LoginParams;
 import com.example.auth.app.domain.entities.register.RegisterParams;
 import com.example.auth.base.annotations.Mapper;
-import com.example.auth.controllers.entities.error.ResponseFieldErrorBody;
-import com.example.auth.controllers.entities.error.FieldErrorValidation;
-import com.example.auth.controllers.entities.login.PostLoginBody;
-import com.example.auth.controllers.entities.register.PostRegisterBody;
+import com.example.auth.controllers.auth.entities.error.FieldErrorValidation;
+import com.example.auth.controllers.auth.entities.error.ResponseFieldErrorBody;
+import com.example.auth.controllers.auth.entities.login.PostLoginBody;
+import com.example.auth.controllers.auth.entities.register.PostRegisterBody;
 
 import java.util.List;
 

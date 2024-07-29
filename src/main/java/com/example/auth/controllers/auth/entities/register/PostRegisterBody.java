@@ -1,4 +1,4 @@
-package com.example.auth.controllers.entities.register;
+package com.example.auth.controllers.auth.entities.register;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

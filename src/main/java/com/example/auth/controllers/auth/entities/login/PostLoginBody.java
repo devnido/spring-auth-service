@@ -1,4 +1,4 @@
-package com.example.auth.controllers.entities.login;
+package com.example.auth.controllers.auth.entities.login;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
