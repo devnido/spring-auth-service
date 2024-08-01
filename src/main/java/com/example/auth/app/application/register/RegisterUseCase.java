@@ -32,10 +32,9 @@ public class RegisterUseCase extends BaseUseCase<RegisterParams, RegisterResult>
 
     User newUser = authDataSource.save(user);
 
-    RegisterResult result = new RegisterResult(
+      return new RegisterResult(
         newUser.isVerified(),
         newUser.getEmail());
-    return result;
   }
 
 }

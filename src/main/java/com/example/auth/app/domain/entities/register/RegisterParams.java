@@ -1,10 +1,12 @@
 package com.example.auth.app.domain.entities.register;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class RegisterParams {
 
   private String firstName;

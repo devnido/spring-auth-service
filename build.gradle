@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'groovy'
 	id 'org.springframework.boot' version '3.3.1'
 	id 'io.spring.dependency-management' version '1.1.5'
 }
@@ -15,6 +16,7 @@ java {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -23,7 +25,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation "org.springframework.boot:spring-boot-starter-oauth2-authorization-server"
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+
 
 	// Json Web Token
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
@@ -42,8 +45,18 @@ dependencies {
 	// Test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Spock 
+
+  implementation platform('org.apache.groovy:groovy-bom:4.0.22')
+  implementation 'org.apache.groovy:groovy'
+  testImplementation platform('org.spockframework:spock-bom:2.3-groovy-4.0')
+  testImplementation 'org.spockframework:spock-core'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+	testLogging {
+    events 'passed', 'skipped', 'failed'
+  }
 }
