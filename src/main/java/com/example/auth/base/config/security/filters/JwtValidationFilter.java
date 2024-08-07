@@ -2,16 +2,11 @@ package com.example.auth.base.config.security.filters;
 
 import java.io.IOException;
 
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.auth.app.domain.contracts.TokenManager;
+import com.example.auth.app.auth.domain.contracts.TokenManager;
 
 import static com.example.auth.base.config.security.constants.JwtConstants.AUTHORIZATION_HEADER;
 import static com.example.auth.base.config.security.constants.JwtConstants.BEARER_PREFIX;

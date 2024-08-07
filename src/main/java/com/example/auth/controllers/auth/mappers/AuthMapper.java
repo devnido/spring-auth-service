@@ -1,7 +1,7 @@
 package com.example.auth.controllers.auth.mappers;
 
-import com.example.auth.app.domain.entities.login.LoginParams;
-import com.example.auth.app.domain.entities.register.RegisterParams;
+import com.example.auth.app.auth.domain.entities.login.LoginParams;
+import com.example.auth.app.auth.domain.entities.register.RegisterParams;
 import com.example.auth.base.annotations.Mapper;
 import com.example.auth.controllers.auth.entities.error.FieldErrorValidation;
 import com.example.auth.controllers.auth.entities.error.ResponseFieldErrorBody;

@@ -1,9 +1,9 @@
 package unit.app.application.register
 
-import com.example.auth.app.application.register.RegisterUseCase
-import com.example.auth.app.domain.contracts.AuthDataSource
-import com.example.auth.app.domain.entities.User
-import com.example.auth.app.domain.entities.register.RegisterParams
+import com.example.auth.app.auth.application.register.RegisterUseCase
+import com.example.auth.app.auth.domain.contracts.AuthDataSource
+import com.example.auth.app.auth.domain.entities.User
+import com.example.auth.app.auth.domain.entities.register.RegisterParams
 import org.springframework.security.crypto.password.PasswordEncoder
 import spock.lang.Specification
 import spock.lang.Subject

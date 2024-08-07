@@ -1,14 +1,15 @@
 package com.example.auth.controllers.auth;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.auth.app.posts.GetPostsUseCase;
+import com.example.auth.app.posts.Post;
+import org.springframework.web.bind.annotation.*;
 
-import com.example.auth.app.application.login.LoginUseCase;
-import com.example.auth.app.application.register.RegisterUseCase;
-import com.example.auth.app.domain.entities.login.LoginParams;
-import com.example.auth.app.domain.entities.login.LoginResult;
-import com.example.auth.app.domain.entities.register.RegisterParams;
-import com.example.auth.app.domain.entities.register.RegisterResult;
+import com.example.auth.app.auth.application.login.LoginUseCase;
+import com.example.auth.app.auth.application.register.RegisterUseCase;
+import com.example.auth.app.auth.domain.entities.login.LoginParams;
+import com.example.auth.app.auth.domain.entities.login.LoginResult;
+import com.example.auth.app.auth.domain.entities.register.RegisterParams;
+import com.example.auth.app.auth.domain.entities.register.RegisterResult;
 import com.example.auth.controllers.auth.entities.error.ResponseFieldErrorBody;
 import com.example.auth.controllers.auth.entities.login.PostLoginBody;
 import com.example.auth.controllers.auth.entities.register.PostRegisterBody;
@@ -17,13 +18,12 @@ import com.example.auth.controllers.auth.mappers.AuthMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -33,6 +33,8 @@ public class AuthController {
   private final LoginUseCase loginUseCase;
 
   private final RegisterUseCase registerUseCase;
+
+  private final GetPostsUseCase getPostsUseCase;
 
   private final AuthMapper mapper;
 
@@ -46,6 +48,8 @@ public class AuthController {
     LoginParams params = mapper.loginBodyToDomain(body);
 
     LoginResult result = loginUseCase.execute(params);
+
+
 
     if (result.isSuccess()) {
       return ResponseEntity.status(HttpStatus.OK).body(result);
@@ -68,6 +72,13 @@ public class AuthController {
 
     return ResponseEntity.status(HttpStatus.OK).body(result);
 
+  }
+
+  @GetMapping("/posts")
+  public ResponseEntity<?> getPosts() {
+    List<Post> posts = getPostsUseCase.execute();
+
+    return ResponseEntity.status(HttpStatus.ACCEPTED).body(posts);
   }
 
   private ResponseEntity<?> handleErrors(BindingResult bindingResult) {

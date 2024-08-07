@@ -1,12 +1,12 @@
 package unit.app.application.login
 
-import com.example.auth.app.application.login.LoginUseCase
-import com.example.auth.app.domain.contracts.AuthDataSource
-import com.example.auth.app.domain.contracts.TokenManager
-import com.example.auth.app.domain.entities.User
-import com.example.auth.app.domain.entities.login.LoginParams
-import com.example.auth.app.domain.entities.login.token.AccessTokenPayload
-import com.example.auth.app.domain.entities.login.token.RefreshTokenPayload
+import com.example.auth.app.auth.application.login.LoginUseCase
+import com.example.auth.app.auth.domain.contracts.AuthDataSource
+import com.example.auth.app.auth.domain.contracts.TokenManager
+import com.example.auth.app.auth.domain.entities.User
+import com.example.auth.app.auth.domain.entities.login.LoginParams
+import com.example.auth.app.auth.domain.entities.login.token.AccessTokenPayload
+import com.example.auth.app.auth.domain.entities.login.token.RefreshTokenPayload
 import org.springframework.security.crypto.password.PasswordEncoder
 import spock.lang.Specification
 import spock.lang.Subject
